@@ -1,0 +1,13 @@
+class Solution {
+  public:
+    int getMiddle(Node* head) {
+        // code here
+        Node*l=head;
+        Node*r=head;
+        while(r!=nullptr&&r->next!=nullptr){
+            l=l->next;
+            r=r->next->next;
+        }
+        return l->data;
+    }
+};
