@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    bool detectLoop(Node* head) {
+        // code here
+        Node*l=head;
+        Node*r=head;
+        while(r!=nullptr&&r->next!=nullptr)
+        {
+            l=l->next;
+            r=r->next->next;
+            if(l==r)
+            return 1;
+        }
+        return 0;
+    }
+};
