@@ -1,0 +1,14 @@
+class Solution {
+  public:
+    Node* reverseList(Node* head) {
+        // code here
+        Node*curr=head,*prev=nullptr,*n;
+        while(curr!=nullptr){
+            n=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=n;
+        }
+        return prev;
+    }
+};
