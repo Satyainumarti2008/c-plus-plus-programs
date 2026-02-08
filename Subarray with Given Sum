@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    vector<int> subarraySum(vector<int> &arr, int target) {
+        int s=0,e=0,sum=0;
+        for(int i=0;i<arr.size();i++){
+            sum+=arr[i];
+           if(sum>=target){
+               e=i;
+               while(sum>target&&s<e){
+                   sum-=arr[s];
+                   s++;
+               }
+           }
+           if(sum==target)
+           return {s+1,e+1};
+        }
+        return {-1};
+    }
+};
