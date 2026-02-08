@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    Node* deleteMid(Node* head) {
+        // Your Code Here
+        if(head == nullptr || head->next == nullptr)
+            return nullptr; 
+        Node*l=head;
+        Node*r=head;
+        Node*t;
+        while(r!=nullptr&&r->next!=nullptr){
+            t=l;
+            l=l->next;
+            r=r->next->next;
+        }
+        t->next=l->next;
+        delete l;
+        return head;
+    }
+};
