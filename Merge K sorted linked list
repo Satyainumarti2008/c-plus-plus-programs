@@ -1,0 +1,49 @@
+/*
+class Node {
+  public:
+    int data;
+    Node* next;
+
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+*/
+Node* merge(Node* head1,Node* head2){
+    Node* dummy = new Node(-1);
+    Node* curr = dummy;
+    while (head1 != nullptr && head2 != nullptr) {
+        if (head1->data <= head2->data) {
+            curr->next = head1;
+            head1 = head1->next;
+        } else {
+            curr->next = head2;
+            head2 = head2->next;
+        }
+        curr = curr->next;
+    }
+    if (head1 != nullptr) {
+        curr->next = head1;
+    } else {
+        curr->next = head2;
+    }
+    return dummy->next;
+}
+Node* mergedivide(int i,int j,vector<Node*>& arr){
+    if(i==j)
+    return arr[i];
+    int mid=i+(j-i)/2;
+    Node* head1=mergedivide(i,mid,arr);
+    Node* head2=mergedivide(mid+1,j,arr);
+    Node* head=merge(head1,head2);
+    return head;
+}
+class Solution {
+  public:
+    Node* mergeKLists(vector<Node*>& arr) {
+        // code here
+        if(arr.size()==0) return nullptr;
+        return mergedivide(0,arr.size()-1,arr);
+    }
+};
