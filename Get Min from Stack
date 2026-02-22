@@ -1,0 +1,42 @@
+class SpecialStack {
+  public:
+    stack<int>st;
+    stack<int>minst;
+    SpecialStack() {
+        // Define Stack
+        
+    }
+    void push(int x) {
+        // Add an element to the top of Stack
+        st.push(x);
+        if(minst.empty()||x<=minst.top())
+        minst.push(x);
+        else
+        minst.push(minst.top());
+    }
+    void pop() {
+        // Remove the top element from the Stack
+        if(st.empty())
+        return;
+        st.pop();
+        minst.pop();
+    }
+    int peek() {
+        // Returns top element of the Stack
+        if(st.empty())
+        return -1;
+        return st.top();
+    }
+    bool isEmpty() {
+        // Check if stack is empty
+        if(st.empty())
+        return 1;
+        return 0;
+    }
+    int getMin() {
+        // Finds minimum element of Stack
+        if(minst.empty())
+        return -1;
+        return minst.top();
+    }
+};
